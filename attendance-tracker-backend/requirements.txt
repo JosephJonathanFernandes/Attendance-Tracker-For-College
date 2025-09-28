@@ -1,0 +1,13 @@
+flask
+flask_sqlalchemy
+flask_jwt_extended
+flask_cors
+werkzeug
+python-dateutil
+pandas
+openpyxl
+reportlab
+flask-mail
+python-dotenv
+apscheduler
+pytz
