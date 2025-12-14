@@ -18,6 +18,19 @@ CORS(app)
 db.init_app(app)
 jwt = JWTManager(app)
 
+@jwt.unauthorized_loader
+def unauthorized_response(callback):
+    return {"error": "Missing Authorization Header"}, 401
+
+@jwt.invalid_token_loader
+def invalid_token_callback(callback):
+    # Invalid token
+    return {"error": "Invalid Token", "details": callback}, 422
+
+@jwt.expired_token_loader
+def expired_token_callback(jwt_header, jwt_payload):
+    return {"error": "Token has expired"}, 401
+
 # Register Blueprints
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(subjects_bp, url_prefix="/api/subjects")
@@ -26,6 +39,10 @@ app.register_blueprint(tasks_bp, url_prefix="/api/tasks")
 app.register_blueprint(reminders_bp, url_prefix="/api/reminders")
 app.register_blueprint(analytics_bp, url_prefix="/api/analytics")
 app.register_blueprint(calendar_bp, url_prefix="/api/calendar")
+
+# Initialize Database
+with app.app_context():
+    db.create_all()
 
 @app.route("/")
 def index():

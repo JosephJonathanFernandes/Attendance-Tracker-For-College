@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/auth'
+const API_URL = '/api/auth'
 
 // Create axios instance with default config
 const api = axios.create({
@@ -51,7 +51,7 @@ export const authService = {
       const response = await api.post('/register', { 
         email, 
         password, 
-        full_name: fullName 
+        name: fullName 
       })
       return response.data
     } catch (error) {

@@ -7,6 +7,60 @@ A comprehensive full-stack web application designed to help college students tra
 ![Flask](https://img.shields.io/badge/flask-v2.0+-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+## 🚀 Getting Started
+
+### Option 1: Docker (Recommended)
+
+The easiest way to run the application is using Docker.
+
+1.  Ensure you have Docker and Docker Compose installed.
+2.  Run the following command in the root directory:
+    ```bash
+    docker compose up --build
+    ```
+    *Note: If you are using an older version of Docker, you might need to use `docker-compose up --build`.*
+3.  Access the application:
+    - Frontend: http://localhost:3000
+    - Backend API: http://localhost:5000
+
+### Option 2: Manual Setup
+
+#### Backend
+1.  Navigate to `attendance-tracker-backend`:
+    ```bash
+    cd attendance-tracker-backend
+    ```
+2.  Create a virtual environment and activate it:
+    ```bash
+    python -m venv venv
+    # Windows
+    venv\Scripts\activate
+    # Unix/MacOS
+    source venv/bin/activate
+    ```
+3.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  Run the server:
+    ```bash
+    flask run
+    ```
+
+#### Frontend
+1.  Navigate to `attendance-tracker-frontend`:
+    ```bash
+    cd attendance-tracker-frontend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Run the development server:
+    ```bash
+    npm run dev
+    ```
+
 ## 🌟 Features
 
 ### 📊 Attendance Management

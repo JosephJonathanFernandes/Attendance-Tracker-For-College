@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./attendance-tracker-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./attendance-tracker-backend:/app
+      - /app/venv
+      - /app/__pycache__
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    restart: unless-stopped
+
+  frontend:
+    build: ./attendance-tracker-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./attendance-tracker-frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://backend:5000
+    depends_on:
+      - backend
+    restart: unless-stopped
